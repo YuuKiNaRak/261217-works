@@ -10,11 +10,13 @@ public class Node {
     
     // Constructor 1
     public Node(int id, String name, double gpa){
-
+        this.student_id = id; //assign student_id to the input name
+        this.name = name; //assign name to the input name
+        this.gpa = gpa; //assign gpa to the input gpa
     }
     // Constructor 2
     public Node(String name){
-
+        this.name = name; //assign game to the input name
     }
     // Constructor 3 (dummy)
     public Node(){
