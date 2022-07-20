@@ -42,7 +42,7 @@ public class DoublyLinkedList {
             System.out.println("ERROR");
             return new Node("Empty List!");
         } else {
-            return new Node(head.student_id, head.name, head.gpa);
+            return head;
         }
     }
     
@@ -51,7 +51,7 @@ public class DoublyLinkedList {
             System.out.println("ERROR");
             return new Node("Empty List!");
         } else {
-            return new Node(tail.student_id, tail.name, tail.gpa);
+            return tail;
         }
     }
     
@@ -121,17 +121,21 @@ public class DoublyLinkedList {
     }
     
     public void addNodeAfter(Node node1, Node node2){
-        node2.next = node1.next;
-        node2.next.previous = node2;
-        node1.next = node2;
+        if(node1 == tail)
+            tail = node2;
+        else
+            node2.next = node1.next;
         node2.previous = node1;
+        node1.next = node2;
     }
     
     public void addNodeBefore(Node node1, Node node2){
-        node2.previous = node1.previous;
-        node2.previous.next = node2;
-        node1.previous = node2;
+        if(node1 == head)
+            head = node2;
+        else
+            node2.previous = node1.previous;
         node2.next = node1;
+        node1.previous = node2;
     }
     
     public boolean isEmpty(){
@@ -176,7 +180,7 @@ public class DoublyLinkedList {
                 current = current.next;
             }
 
-            return new Node(maxGpa.student_id, maxGpa.name, maxGpa.gpa);
+            return maxGpa;
         }
     }
 }
