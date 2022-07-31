@@ -19,8 +19,7 @@ public class Stock {
     }
     
     public void buy(int boughtShares, double boughtPrice){
-        // Complete this code
-        // Something is missing here
+        list.push(new Node(boughtShares, boughtPrice)); //pushing new purchase into to the list
         
         totalShares += boughtShares;
     }
@@ -30,8 +29,28 @@ public class Stock {
             double realizedGain = 0.0;
             double unrealizedGain = 0.0;
             
-            // Complete this code
-            // Something is missing here
+            //calculating realized Gain/Loss
+            while(soldShares != 0){ //loop until there is no soldShares left
+                Node current = list.top(); 
+                int reducedShares = Math.min(current.shares, soldShares); //determine highest number of shares that can be sold at the current node
+                soldShares -= reducedShares;
+                current.shares -= reducedShares;
+                realizedGain += (soldPrice - current.price) * reducedShares; //adding gain/loss price
+                if(current.shares == 0) //if current node has no share left even after reduction, pop the node out
+                    list.pop(); 
+                
+                /*note: if there is some shares left in the current node, the node will still be left in the list to be calulated for unrealized Gain/Loss
+                  and this loop will stop since soldShares must equal to 0 if there's some left in current node.*/
+            }
+            
+            Node current = list.top();
+            //calculating unrealized Gain/Loss
+            while(current != null){ //iterate the entire list
+                unrealizedGain += (soldPrice - current.price) * current.shares; // adding gain/loss price
+                current = current.next;
+                
+                //note: Since the remaining list has to be intacted, the program must iterate through the list instead of popping each node.
+            }
             
             totalShares -= soldShares;
             System.out.println("Realized P/L = " + realizedGain + " Unrealized P/L = " + unrealizedGain);
