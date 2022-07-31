@@ -6,24 +6,25 @@ public class Stack implements List{
     
     public void push(Node node){
         if (head == null){
-            // Do something
+            head = node;
         }else{
-            // Do something else
+            node.next = head;
+            head = node;
         }
     }
     
     public void pop(){
         // Fix this function
-        if (true){
-            // Do something
+        if (head != null){
+            head = head.next;
         }else{
             System.out.println("Error: Stack Underflow");
         }
     }
     
     public Node top(){
-        // Fix this
-        return new Node(0,0);
+        
+        return head;
     }
     
 }
