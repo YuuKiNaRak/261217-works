@@ -8,7 +8,7 @@ public class Queue {
     int size;
     
     public Queue(int cap){
-        this.capacity = cap; //ให้รับค่าcapเข้ามาไว้ที่calssของQueue
+        this.capacity = cap; //ให้รับค่าcapเข้ามาไว้ที่classของQueue
          arr = new Node[capacity];//แล้วสร้างอาเรย์ที่มีขนาดcapacity
         
     }
