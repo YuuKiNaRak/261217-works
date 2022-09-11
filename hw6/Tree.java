@@ -1,6 +1,6 @@
 
 // This Tree needs to inherit BTreePrinter
-public class Tree{ // Fix this
+public class Tree extends BTreePrinter{ //inherit from BTreePrinter
     Node root;
       
     public Tree(Node root){
