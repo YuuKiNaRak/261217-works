@@ -79,32 +79,68 @@ public class Tree extends BTreePrinter{ //inherit from BTreePrinter
     
     public void printPreOrderDFT(){
         System.out.print("PreOrder DFT node sequence [ ");
-        // Call the recursive version
+        
+        if(root != null){   //If the the tree is empty, there is nothing to print.
+            //left -> center -> right
+            printPreOrderDFT(root.left);
+            System.out.print(root.key + " ");
+            printPreOrderDFT(root.right);
+        }
+        
         System.out.println("]");
     }
     
     public static void printPreOrderDFT(Node node){
-        // this function should be recursive   
+        if(node == null) return;    //If the node is null, there is nothing to print.
+        
+        //left -> center -> right
+        printPreOrderDFT(node.left);
+        System.out.print(node.key + " ");
+        printPreOrderDFT(node.right); 
     }
     
     public void printInOrderDFT(){
         System.out.print("InOrder DFT node sequence [ ");
-        // Call the recursive version
+        
+        if(root != null){   //If the the tree is empty, there is nothing to print.
+            //center -> left -> right
+            System.out.print(root.key + " ");
+            printInOrderDFT(root.left);
+            printInOrderDFT(root.right);
+        }
+        
         System.out.println("]");
     }
     
     public static void printInOrderDFT(Node node){
-        // this function should be recursive  
+        if(node == null) return;    //If the node is null, there is nothing to print.
+        
+        //center -> left -> right
+        System.out.print(node.key + " ");
+        printInOrderDFT(node.left);
+        printInOrderDFT(node.right);
     }
     
     public void printPostOrderDFT(){
         System.out.print("PostOrder DFT node sequence [ ");
-        // Call the recursive version
+
+        if(root != null){   //If the the tree is empty, there is nothing to print.
+            //left -> right -> center
+            printPostOrderDFT(root.left);
+            printPostOrderDFT(root.right);
+            System.out.print(root.key + " ");
+        }
+        
         System.out.println("]");
     }
     
     public static void printPostOrderDFT(Node node){
-        // this function should be recursive 
+        if(node == null) return;    //If the node is null, there is nothing to print.
+        
+        //left -> right -> center
+        printPostOrderDFT(node.left);
+        printPostOrderDFT(node.right);
+        System.out.print(node.key + " ");
     }
     
     public static int height(Node node){
@@ -114,9 +150,11 @@ public class Tree extends BTreePrinter{ //inherit from BTreePrinter
     }
     
     public static int size(Node node){
-        // Use recursion to implement this function
-        // size = #children + 1(itself)
-        return -2;
+        if(node == null) 
+            return 0; //Node is null, therefore its size is 0.
+        
+        // size of it self + size of left-subtree + size of right-subtree
+        return 1 + size(node.left) + size(node.right);
     }
     
     public static int depth(Node root, Node node){
@@ -133,8 +171,7 @@ public class Tree extends BTreePrinter{ //inherit from BTreePrinter
     }
     
     public int size(){ // Tree size
-        // Hint: call the static function
-        return -2;
+        return size(root);
     }
     
     public int depth(){ // Tree depth
