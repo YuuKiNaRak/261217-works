@@ -58,17 +58,34 @@ public class Tree extends BTreePrinter{ //inherit from BTreePrinter
     }
     
     public Node findClosest(int search_key){
-        // Please use while loop to implement this function
-        // Try not to use recursion
         
         Node current, closest;
         closest = current = root;
         int min_diff = Integer.MAX_VALUE;
         
-        // Use while loop to traverse from root to the closest leaf
         
-        return closest;
-    }
+        
+        while (current != null) { //วนจนกว่า จะเจอ null 
+            if(search_key == current.key ){ //เมื่อ node ที่ใช้อยุ่ เท่ากับ search_key
+                return current; // นำ node ตรงจุดนั้นแแกมาแล้วจบเลย
+            }
+
+            if( Math.abs(search_key - current.key) < min_diff){ //เมื่อค่าABS ของ search_key - current.key น้อยกว่า min_diff 
+                min_diff = Math.abs(search_key - current.key); //min_diff จะเป็นค่านั้น
+                closest =  current; // ให้closestเป็นnodeที่ใกล้ที่สุด
+            }
+
+            if( search_key < current.key){ //เมื่อ search_key < current.key
+                current = current.left; // ให้cuurent ไปทางซ้าย
+            }
+            else{
+                current = current.right;// ให้cuurent ไปทางขวา
+            }
+            
+        }
+        
+        return closest;//ส่งค่าclosest
+    
     
     // Implement this function using the findClosestLeaf technique
     // Do not implement the recursive function
